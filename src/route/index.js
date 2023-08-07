@@ -12,6 +12,7 @@ class User {
 		this.email = email;
 		this.login = login;
 		this.password = password;
+		this.id = new Date().getTime();
 	}
 
 	static add = (user) => {
@@ -21,21 +22,37 @@ class User {
 	static getList = () => {
 		return this.#list;
 	}
+
+	static getById = (id) => this.#list.find((user) => user.id === id);
+
+	static deleteById = (id, password) => {
+		const index = this.#list.findIndex((user) => user.id === id);
+
+		if (index >= 0 && password === this.#list[index].password) {
+			this.#list.splice(index, 1);
+			return true;
+		};
+
+		return false;
+	}
+
+	static updateById = (id, email, password) => {
+		const user = this.getById(id);
+
+		if (user && email && password === user.password) {
+			user.email = email;
+			return true;
+		}
+
+		return false;
+	}
 }
 
-// ================================================================
 
-// router.get Створює нам один ентпоїнт
-
-// ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/', function (req, res) {
 
 	const list = User.getList();
-  // res.render генерує нам HTML сторінку
-
-  // ↙️ cюди вводимо назву файлу з сontainer
   res.render('index', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'index',
 
 	data: {
@@ -45,8 +62,8 @@ router.get('/', function (req, res) {
 		}
 	}
   })
-  // ↑↑ сюди вводимо JSON дані
 })
+
 
 router.post('/user-create', function (req, res) {
 	const {email, login, password} = req.body;
@@ -57,8 +74,63 @@ router.post('/user-create', function (req, res) {
 	
 	console.log(User.getList());
 
-  res.render('user-create', {
-    style: 'user-create',
+  res.render('info', {
+    style: 'info',
+	info: 'користувача створено',
+  })
+})
+
+router.get('/user-del', function (req, res) {
+	const {id} = req.query;
+
+	const user = User.getById(Number(id));
+
+  res.render('del', {
+    style: 'del',
+	user,
+  })
+})
+
+router.post('/user-delete', function (req, res) {
+	const {firstId} = req.query;
+	const{id, password} = req.body;
+
+	let result = false;
+
+	if (firstId === id) {
+		result = User.deleteById(Number(id), password);
+	}
+
+  res.render('info', {
+    style: 'info',
+	info: result ? 'користувача видалено' : 'сталась помилка',
+  })
+})
+
+router.get('/user-upd', function (req, res) {
+	const {id} = req.query;
+
+	const user = User.getById(Number(id));
+
+  res.render('upd', {
+    style: 'upd',
+	user,
+  })
+})
+
+router.post('/user-update', function (req, res) {
+	const{firstId} = req.query;
+	const {email, password, id} = req.body;
+
+	let result = false;
+
+	if (firstId === id) {
+		result = User.updateById(Number(id), email, password);
+	}
+
+  res.render('info', {
+    style: 'info',
+	info: result ? 'пошту користувача оновлено' : 'сталась помилка',
   })
 })
 

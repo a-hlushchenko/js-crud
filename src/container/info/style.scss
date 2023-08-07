@@ -1,0 +1,26 @@
+@use '../../lib/service.scss' as s;
+
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: s.space(4);
+}
+
+h1 {
+    font-size: 32px;
+}
+
+a {
+    font-size: 20px;
+    display: block;
+    padding: s.space(4);
+    background-color: green;
+    border: 2px solid green;
+    border-radius: s.space(2);
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}

@@ -17,8 +17,6 @@ li {
 .form__title {
   font-size: 20px;
   font-weight: 700;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #ddd;
 }
 .form__content {
   display: grid;
@@ -41,7 +39,7 @@ li {
   border: 1px solid #ddd;
   padding: 8px;
   border-radius: 20px;
-  background-color: rgb(33, 172, 33);
+  background-color: red;
   color: white;
 }
 .form .delete, .form .update {
@@ -54,6 +52,14 @@ li {
 }
 .form .update {
   background-color: orange;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ddd;
 }
 
 /*# sourceMappingURL=style.css.map */

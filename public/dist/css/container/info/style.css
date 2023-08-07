@@ -1,0 +1,26 @@
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 16px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+a {
+  font-size: 20px;
+  display: block;
+  padding: 16px;
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=style.css.map */

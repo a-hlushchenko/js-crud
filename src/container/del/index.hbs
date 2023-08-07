@@ -1,0 +1,22 @@
+<section>
+    <div class="form">
+        <div class="title-container">
+            <h1 class="form__title">Видалення користувача</h1>
+            <div>ID користувача: {{user.id}}</div>
+            <div>Пошта користувача: {{user.email}}</div>
+        </div>
+        <form method="POST" action="/user-delete?firstId={{user.id}}">
+            <div class="form__content">
+                <div class="form__field">
+                    <label for="id" class="form__label">Підтвердіть ID:</label>
+                    <input name="id" type="id" class="form__input">
+                </div>
+                <div class="form__field">
+                    <label for="password" class="form__label">Пароль:</label>
+                    <input name="password" type="password" class="form__input">
+                </div>
+                <button class="form__button">Видалити</button>
+            </div>
+        </form>
+    </div>
+</section>

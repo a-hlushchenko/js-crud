@@ -19,8 +19,6 @@ li {
 	&__title {
 		font-size: 20px;
 		font-weight: 700;
-		padding-bottom: s.space(1);
-		border-bottom: 1px solid s.color('light');
 	}
 
 	&__content {
@@ -48,7 +46,7 @@ li {
 		border: 1px solid s.color('light');
 		padding: s.space(2);
 		border-radius: 20px;
-		background-color: rgb(33, 172, 33);
+		background-color: red;
 		color: white;
 	}
 
@@ -64,4 +62,12 @@ li {
 	.update {
 		background-color: orange;
 	}
+}
+
+.title-container {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(2);
+	padding-bottom: s.space(1);
+	border-bottom: 1px solid s.color('light');
 }

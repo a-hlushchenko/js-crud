@@ -11,15 +11,15 @@
 				<div class="form__content">
 					<div class="form__field">
 						<label for="email" class="form__label">Email адреса</label>
-						<input name="email" type="email" class="form__input">
+						<input name="email" type="email" class="form__input" required>
 					</div>
 					<div class="form__field">
 						<label for="login" class="form__label">Логін:</label>
-						<input name="login" type="login" class="form__input">
+						<input name="login" type="login" class="form__input" required>
 					</div>
 					<div class="form__field">
 						<label for="password" class="form__label">Пароль:</label>
-						<input name="password" type="password" class="form__input">
+						<input name="password" type="password" class="form__input" required>
 					</div>
 					<button class="form__button">Створити</button>
 				</div>
@@ -33,11 +33,11 @@
 			<div class="user-list">
 				{{#with data.users}}
 				{{#if isEmpty}}
-				<mark>Список користувачів пустий</mark>
+				<mark>Пусто</mark>
 				{{else}}
 				<ul>
 					{{#each list}}
-					<li>{{login}} | {{email}}</li>
+					<li>{{login}} | {{email}} | {{id}}<a class="delete" href="/user-del?id={{id}}">видалити користувача</a><a class="update" href="/user-upd?id={{id}}">змінити пошту користувача</a></li>
 					{{/each}}
 				</ul>
 				{{/if}}
@@ -45,6 +45,8 @@
 			</div>
 		</div>
 	</section>
+
+	
 </main>
 
 

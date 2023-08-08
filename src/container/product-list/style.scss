@@ -1,0 +1,103 @@
+@use '../../lib/service.scss' as s;
+
+main {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(10);
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+h1 {
+	font-size: 36px;
+	font-weight: 500;
+	color: rgb(31, 101, 233);
+}
+
+.list-section {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(10);
+	padding: s.space(10);
+}
+
+.no-products-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: s.space(2);
+}
+
+.no-products-info {
+	font-size: 20px;
+	font-weight: 500;
+	border: 1px solid red;
+	border-radius: s.space(2);
+	width: fit-content;
+	padding: s.space(3);
+}
+
+.create-button {
+	background-color: rgb(31, 101, 233);
+	border-radius: s.space(2);
+	color: white;
+	padding: s.space(3) s.space(10);
+	font-size: 20px;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.product-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: s.space(16) s.space(6);
+	align-items: start;
+}
+
+.list-item {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(5);
+	padding: s.space(4);
+	border-radius: s.space(2);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
+}
+
+.list-name {
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.list-description {
+	line-height: 150%;
+}
+
+.list-id {
+	color: gray;
+}
+
+.list-action-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.list-price {
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.list-button {
+	text-decoration: none;
+	color: rgb(0, 110, 255);
+	font-size: 18px;
+	transition: opacity 0.7s;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	&:active {
+		opacity: 0.6;
+	}
+}

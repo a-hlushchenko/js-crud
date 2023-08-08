@@ -1,0 +1,31 @@
+<main>
+	<section class="form-section">
+		<h1>Створення товару</h1>
+		<form class="form" method="POST" action="/product-edit">
+			<strong class="form__title">Інформація про товар</strong>
+			<div class="form__content">
+				<div class="form__field">
+					<label for="name" class="form__label">Назва товару</label>
+					<input name="name" type="text" class="form__input" value="{{product.name}}" required>
+				</div>
+				<div class="form__field">
+					<label for="price" class="form__label">Ціна</label>
+					<input name="price" type="number" class="form__input" value="{{product.price}}" required>
+				</div>
+				<div class="form__field">
+					<label for="id" class="form__label">ID</label>
+					<input name="id" type="number" class="form__input readonly" value="{{product.id}}" required readonly>
+				</div>
+				<div class="form__field">
+					<label for="description" class="form__label">Короткий опис товару</label>
+					<textarea name="description" type="text" class="form__input" required>{{product.description}}</textarea>
+					<span class="form__alert">Відображується у картці товару</span>
+				</div>
+				<div class="buttons-container">
+					<button class="form__button">Зберегти оновлення</button>
+					<a href="/product-delete?id={{product.id}}" class="form__button delete">Видалити товар</a>
+				</div>
+			</div>
+		</form>
+	</section>
+</main>

@@ -1,0 +1,101 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 500;
+  color: rgb(31, 101, 233);
+}
+
+.list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+}
+
+.no-products-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.no-products-info {
+  font-size: 20px;
+  font-weight: 500;
+  border: 1px solid red;
+  border-radius: 8px;
+  width: fit-content;
+  padding: 12px;
+}
+
+.create-button {
+  background-color: rgb(31, 101, 233);
+  border-radius: 8px;
+  color: white;
+  padding: 12px 40px;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 64px 24px;
+  align-items: start;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
+}
+
+.list-name {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.list-description {
+  line-height: 150%;
+}
+
+.list-id {
+  color: gray;
+}
+
+.list-action-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-price {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.list-button {
+  text-decoration: none;
+  color: rgb(0, 110, 255);
+  font-size: 18px;
+  transition: opacity 0.7s;
+}
+.list-button:hover {
+  opacity: 0.8;
+}
+.list-button:active {
+  opacity: 0.6;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,35 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.alert {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.button {
+  padding: 12px 40px;
+  border-radius: 4px;
+  background-color: rgb(31, 101, 233);
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=style.css.map */

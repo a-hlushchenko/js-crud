@@ -4,6 +4,7 @@ main {
   justify-content: center;
   align-items: center;
   height: 100%;
+  padding: 20px;
 }
 
 .container {
@@ -30,6 +31,18 @@ main {
   color: white;
   font-size: 20px;
   text-decoration: none;
+}
+
+@media all and (width < 500px) {
+  .container {
+    flex-direction: column;
+  }
+  .alert {
+    font-size: 20px;
+  }
+  .button {
+    font-size: 18px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

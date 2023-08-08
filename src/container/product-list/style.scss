@@ -26,6 +26,7 @@ h1 {
 	align-items: center;
 	justify-content: space-between;
 	gap: s.space(2);
+	flex-wrap: wrap;
 }
 
 .no-products-info {
@@ -99,5 +100,31 @@ h1 {
 
 	&:active {
 		opacity: 0.6;
+	}
+}
+
+@media all and (width < 500px) {
+	h1 {
+		font-size: 24px;
+	}
+
+	.list-section {
+		padding: s.space(5);
+	}
+
+	.create-button {
+		padding: s.space(3);
+		font-size: 18px;
+		border-radius: 6px;
+	}
+
+	.product-list {
+		display: flex;
+		flex-direction: column;
+		gap: s.space(5);
+	}
+
+	.list-item {
+		width: 100%;
 	}
 }

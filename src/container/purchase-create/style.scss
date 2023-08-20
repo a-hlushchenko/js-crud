@@ -1,0 +1,77 @@
+@use '../../lib/service.scss' as s;
+@use '../../component/purchase-product/style.scss' as purchaseProduct;
+@use '../../component/heading/style.scss' as heading;
+@use '../../component/divider/style.scss' as divider;
+@use '../../component/input/style.scss' as input;
+@use '../../component/button/style.scss' as button;
+
+.form-card {
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    display: grid;
+    gap: s.space(5);
+}
+
+.price-details {
+    display: grid;
+    gap: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.price-details__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: s.space(4);
+    line-height: 120%;
+}
+
+.price-details__item > span:last-child {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.order-title {
+    font-size: 24px;
+    color: s.color(main);
+}
+
+.all-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    *:has(textarea), strong, button {
+        grid-column: 1 / 3;
+    }
+}
+
+.form-card__total {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media all and (width < 620px) {
+    .all-fields {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .heading__title {
+        font-size: 24px;
+    }
+
+    .order-title {
+        font-size: 21px;
+    }
+
+    .price-details__item > span:last-child, .form-card__total {
+        font-size: 18px;
+    }
+
+    .price-details__item {
+        gap: s.space(3);
+    }
+}

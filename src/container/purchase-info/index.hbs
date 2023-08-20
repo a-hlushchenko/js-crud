@@ -1,0 +1,28 @@
+<main>
+
+	{{#with data}}
+
+	<div class="form-card">
+
+		{{>heading title="Інформація про замовлення"}}
+		{{>text-field title="ID:" text=id}}
+		{{>divider}}
+		{{>text-field title="Ім'я:" text=firstname}}
+		{{>text-field title="Прізвище:" text=lastname}}
+		{{>text-field title="Телефон:" text=phone}}
+		{{>text-field title="Електронна пошта:" text=email}}
+		{{>divider}}
+		{{>text-field title="Адреса доставки:" text='вул. Центральна 14, кв. 36, м. Київ, 02000, Україна'}}
+		{{>text-field title="Назва товару:" text=product.title}}
+		{{>divider}}
+		{{>text-field title="Вартість товарів:" text=productPrice price=true}}
+		{{>text-field title="Вартість доставки:" text=deliveryPrice price=true}}
+		{{>text-field title="Сума до сплати:" text=totalPrice price=true}}
+		{{>text-field title="Нараховані бонуси:" text=getBonus price=true}}
+		{{>divider}}
+		<a href="/purchase-update?id={{id}}">{{>button text="Змінити дані"}}</a>
+	</div>
+
+	{{/with}}
+	
+</main>

@@ -1,0 +1,15 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field__title {
+  color: #343A40;
+}
+
+.field__text {
+  color: #000;
+}
+
+/*# sourceMappingURL=style.css.map */

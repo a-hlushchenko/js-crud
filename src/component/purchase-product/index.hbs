@@ -1,0 +1,11 @@
+<li class="product-card">
+    <img class="product-card__img" src="{{img}}" alt="product image">
+    <strong class="product-card__title">{{title}}</strong>
+    <p class="prodct-card__description">{{description}}</p>
+
+    {{#each category}}
+    <span class="product-card__category product-card__category--{{id}}">{{text}}</span>
+    {{/each}}
+
+    <a href="/purchase-product?id={{id}}">{{>button text="Купити зараз: "}}</a>
+</li>

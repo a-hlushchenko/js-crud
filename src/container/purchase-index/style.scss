@@ -1,0 +1,29 @@
+@use '../../lib/service.scss' as s;
+@use '../../component/heading/style.scss' as header;
+@use '../../component/purchase-product/style.scss' as purchaseProduct;
+@use '../../component/button/style.scss' as button;
+
+main {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(15);
+}
+
+.product-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: s.space(15) s.space(5);
+	align-items: start;
+}
+
+@media all and (width < 880px) {
+    .product-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (width < 600px) {
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+}

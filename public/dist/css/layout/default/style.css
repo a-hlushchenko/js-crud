@@ -1,5 +1,9 @@
 body {
   font-family: "Roboto", sans-serif;
+  color: #212529;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 24px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,32 @@
+@use '../../lib/service.scss' as s;
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(3);
+}
+
+.field__input, .field__textarea {
+    border: 1px solid s.color(border);
+    border-radius: 8px;
+    padding: s.space(3) s.space(7);
+    font-size: 16px;
+}
+
+.field__textarea {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100px;
+    min-height: 100px;
+    line-height: 150%;
+}
+
+.field__note {
+    font-size: 14px;
+    color: #808080;
+    margin-top: 4px;
+}
+
+.field--disabled {
+    display: none;
+}

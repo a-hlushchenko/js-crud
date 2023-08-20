@@ -1,0 +1,8 @@
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #CED4DA;
+  grid-column: 1/3;
+}
+
+/*# sourceMappingURL=style.css.map */

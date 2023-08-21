@@ -1,0 +1,61 @@
+@use '../../lib/service.scss' as s;
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+main {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+	gap: s.space(4);
+	padding: s.space(4);
+	box-shadow: 0px 4px 15px 0px rgba(255, 255, 255, 0.15);
+	border-radius: s.space(3);
+    width: 100%;
+    max-width: 720px;
+}
+
+.card__content {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(4);
+}
+
+.card__title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.card__button {
+    padding: s.space(4) s.space(15);
+    border-radius: s.space(1);
+    background: s.color(spotify);
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+@media all and (width < 700px) {
+    .card__button {
+        font-size: 18px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .card {
+        flex-direction: column;
+    }
+
+    .card__content {    
+    align-items: center;
+    }
+}

@@ -1,0 +1,23 @@
+@use '../../lib/service.scss' as s;
+@use '../../lib/spotify.scss' as spotify;
+
+.create-list {
+	display: grid;
+	gap: s.space(8);
+}
+
+.create-list__item {
+	display: grid;
+	grid-template-columns: 56px 1fr;
+	align-items: center;
+	gap: s.space(6);
+}
+
+.create-list__content {
+	display: grid;
+	gap: s.space(4);
+}
+
+.create-list__img {
+	justify-self: center;
+}

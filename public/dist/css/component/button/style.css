@@ -1,0 +1,26 @@
+.button {
+  color: #fff;
+  background-color: #0050FF;
+  padding: 16px;
+  border-radius: 8px;
+  transition: opacity 0.3s;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+  text-decoration: none;
+}
+.button:hover {
+  opacity: 0.7;
+}
+.button span {
+  font-size: 20px;
+}
+@media all and (width < 600px) {
+  .button {
+    font-size: 18px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

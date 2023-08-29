@@ -1,0 +1,33 @@
+@use '../../lib/service.scss' as s;
+@use '../../lib/spotify.scss' as spotify;
+
+.main__content {
+	display: grid;
+	gap: s.space(8);
+}
+
+.delete-button {
+	position: absolute;
+	right: 0;
+}
+
+.add-img {
+	background-color: #242424;
+	position: relative;
+}
+
+.add-img::before, .add-img::after {
+	content: '';
+	position: absolute;
+	width: 26px;
+	height: 2px;
+	background-color: #A7A7A7;
+	border-radius: 10px;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+}
+
+.add-img::after {
+	rotate: 90deg;
+}

@@ -1,0 +1,15 @@
+@use '../../lib/service.scss' as s;
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(2);
+}
+
+.field__title {
+    color: #343A40;
+}
+
+.field__text {
+    color: #000;
+}

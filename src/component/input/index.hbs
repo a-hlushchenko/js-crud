@@ -1,0 +1,9 @@
+<div class="field {{#if disabled}}field--disabled{{/if}}">
+    <label for="{{name}}" class="field__label">{{label}}</label>
+    {{#if textarea}}
+    <textarea name="{{name}}" class="field__textarea"{{#if required}} required{{/if}}></textarea>
+    <span class="field__note">{{note}}</span>
+    {{else}}
+    <input type="{{type}}" class="field__input" value="{{value}}" name="{{name}}"{{#if required}} required{{/if}}{{#if minmax}} min="1"{{#if amount}} max="{{amount}}"{{/if}}{{/if}}>
+    {{/if}}
+</div>

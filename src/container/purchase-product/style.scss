@@ -1,0 +1,122 @@
+@use '../../lib/service.scss' as s;
+@use '../../component/purchase-product/style.scss' as purchaseProduct;
+@use '../../component/divider/style.scss' as divider;
+@use '../../component/input/style.scss' as input;
+@use '../../component/button/style.scss' as button;
+
+main {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(20);
+	align-items: center;
+}
+
+.product-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: s.space(5);
+    align-items: center;
+
+    @media all and (width < 680px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.product-info__title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 120%;
+    color: s.color(main);
+}
+
+.product-info__content {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(8);
+    max-width: 490px;
+    width: 100%;
+}
+
+.product-info__img {
+    width: 100%;
+    max-width: 490px;
+    object-fit: contain;
+}
+
+.other-products {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(10);
+	align-items: center;
+}
+
+.heading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: s.space(5);
+
+	&__title {
+		font-size: 32px;
+		font-weight: 500;
+	}
+}
+
+.product-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: s.space(15) s.space(5);
+	align-items: start;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    padding: s.space(4);
+    gap: s.space(4);
+    border-radius: 12px;
+    border: 1px solid s.color(border);
+}
+
+.product-card__img {
+    width: 100%;
+    max-height: 300px;
+}
+
+.product-card__title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.product-card__description, .prodct-info__description {
+    line-height: 150%;
+}
+
+.product-card__category {
+    padding: s.space(3) s.space(4);
+    border-radius: 20px;
+    align-self: flex-start;
+}
+
+.product-card__category--1 {
+    color: #008000;
+    border: 1px solid #008000;
+}
+
+.product-card__category--2 {
+    color: s.color(main);
+    border: 1px solid s.color(main);
+}
+
+@media all and (width < 700px) {
+    .product-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (width < 500px) {
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+}

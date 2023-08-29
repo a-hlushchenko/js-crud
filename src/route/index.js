@@ -1,267 +1,355 @@
-// Підключаємо технологію express для back-end сервера
 const express = require('express')
-// Cтворюємо роутер - місце, куди ми підключаємо ендпоїнти
 const router = express.Router()
 
-// ================================================================
+class Track {
+  static #list = []
 
-class User {
-	static #list = [];
+  constructor(name, author, image) {
+    this.id = Track.createId()
+    this.name = name
+    this.author = author
+    this.image = image
+  }
 
-	constructor(email, login, password) {
-		this.email = email;
-		this.login = login;
-		this.password = password;
-		this.id = new Date().getTime();
-	}
+  static createId() {
+    const id = Math.round(Math.random() * 9999)
+    if (this.#list.find((track) => track.id === id)) {
+      this.createId()
+    }
 
-	static add = (user) => {
-		this.#list.push(user);
-	}
+    return id
+  }
 
-	static getList = () => {
-		return this.#list;
-	}
+  static getById = (id) =>
+    this.#list.find((track) => track.id === id)
 
-	static getById = (id) => this.#list.find((user) => user.id === id);
+  static create(name, author, image) {
+    const track = new Track(name, author, image)
+    this.#list.push(track)
+    return track
+  }
 
-	static deleteById = (id, password) => {
-		const index = this.#list.findIndex((user) => user.id === id);
-
-		if (index >= 0 && password === this.#list[index].password) {
-			this.#list.splice(index, 1);
-			return true;
-		};
-
-		return false;
-	}
-
-	static updateById = (id, email, password) => {
-		const user = this.getById(id);
-
-		if (user && email && password === user.password) {
-			user.email = email;
-			return true;
-		}
-
-		return false;
-	}
+  static getList = () => this.#list
 }
 
-class Product {
-	static createId = () => {
-		const randomId = Math.floor(Math.random() * 100000);
-		const haveId = this.#list.find((value) => value.id === randomId);
+Track.create(
+  'Уночі',
+  'YAKTAK',
+  'https://i.scdn.co/image/ab67616d00001e025f6c5f25597a74b485359dfa',
+)
+Track.create(
+  'Кити',
+  'Volodymyr Dantes',
+  'https://i.scdn.co/image/ab67616d00001e020b5615a0c35a0af02e85f198',
+)
+Track.create(
+  'Paint The Town Red',
+  'Doja Cat',
+  'https://i.scdn.co/image/ab67616d00001e027acee948ecac8380c1b6ce30',
+)
+Track.create(
+  'Уночі',
+  'YAKTAK',
+  'https://i.scdn.co/image/ab67616d00001e025f6c5f25597a74b485359dfa',
+)
+Track.create(
+  'Кити',
+  'Volodymyr Dantes',
+  'https://i.scdn.co/image/ab67616d00001e020b5615a0c35a0af02e85f198',
+)
+Track.create(
+  'Paint The Town Red',
+  'Doja Cat',
+  'https://i.scdn.co/image/ab67616d00001e027acee948ecac8380c1b6ce30',
+)
 
-		if(haveId) {
-			return this.createId();
-		}
+class Playlist {
+  static #list = []
 
-		return randomId;
-	}
+  constructor(name) {
+    this.id = Playlist.createId()
+    this.name = name
+    this.tracks = []
+    this.amount = 0
+    this.image = '/img/mix-img.jpg'
+  }
 
-	constructor(name, price, description) {
-		this.name = name;
-		this.price = price;
-		this.description = description;
-		this.id = Product.createId();
-		this.createDate = new Date();
-	}
+  static createId() {
+    const id = Math.round(Math.random() * 9999)
 
-	static #list = [
-		{name: 'Anton', price: 9999, description: 'Best bro!', id: 10000},
-	];
+    if (this.#list.find((track) => track.id === id))
+      this.createId()
 
-	static getList = () => {
-		return this.#list;
-	}
+    return id
+  }
 
-	static add = (product) => {
-		this.#list.push(product);
-	}
+  static create(name) {
+    const playlist = new Playlist(name)
+    this.#list.push(playlist)
+    return playlist
+  }
 
-	static getById = (id) => this.#list.find((value) => value.id === id);
+  static makeMix(playlist) {
+    const allTracks = Track.getList()
 
-	static updateById = (id, {name, price, description}) => {
-		const product = this.getById(id);
-		if(name) {product.name = name};
-		if (price) {product.price = price};
-		if (description) {product.description = description};
-	};
+    const randomTracks = allTracks
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
 
-	static deleteById = (id) => {
-		
-		const index = this.#list.findIndex((value) => value.id === id);
+    playlist.tracks.push(...randomTracks)
 
-		if (index >= 0) {
-			this.#list.splice(index, 1);
-			return true;
-		}
+    playlist.amount += 3
+  }
 
-		return false;
-	};
+  static getList = () => this.#list
+
+  static getbyId = (id) =>
+    this.#list.find((playlist) => playlist.id === id)
+
+  deleteTrackById(trackId) {
+    this.tracks = this.tracks.filter(
+      (track) => track.id !== trackId,
+    )
+    this.amount -= 1
+  }
+
+  addTrackById(trackId) {
+    this.tracks.push(Track.getById(trackId))
+    this.amount += 1
+  }
+
+  static findListByValue(value) {
+    return this.#list.filter((playlist) =>
+      playlist.name
+        .toLowerCase()
+        .includes(value.toLowerCase()),
+    )
+  }
+
+  static setPicture(playlist) {
+    playlist.image =
+      playlist.tracks.length > 0
+        ? playlist.tracks[
+            Math.floor(
+              Math.random() * playlist.tracks.length,
+            )
+          ].image
+        : '/img/mix-img.jpg'
+  }
 }
 
-router.get('/user-create', function (req, res) {
+Playlist.makeMix(Playlist.create('Test 1'))
+Playlist.create('Work Anton')
+Playlist.makeMix(Playlist.create('Test2'))
 
-	const list = User.getList();
+router.get('/', function (req, res) {
+  const list = User.getList()
   res.render('index', {
     style: 'index',
 
-	data: {
-		users: {
-			list,
-			isEmpty: list.length === 0,
-		}
-	}
+    data: {
+      list,
+      isEmpty: list.length === 0 ? true : false,
+    },
   })
 })
 
-
-router.post('/user-create', function (req, res) {
-	const {email, login, password} = req.body;
-
-	const user = new User(email, login, password);
-
-	User.add(user);
-	
-	console.log(User.getList());
-
-  res.render('info', {
-    style: 'info',
-	info: 'користувача створено',
+router.get('/spotify-create-list', function (req, res) {
+  res.render('spotify-create-list', {
+    style: 'spotify-create-list',
   })
 })
 
-router.get('/user-del', function (req, res) {
-	const {id} = req.query;
+router.get('/spotify-create', function (req, res) {
+  const isMix = !!req.query.isMix
 
-	const user = User.getById(Number(id));
+  res.render('spotify-create', {
+    style: 'spotify-create',
 
-  res.render('del', {
-    style: 'del',
-	user,
+    data: {
+      isMix,
+    },
   })
 })
 
-router.post('/user-delete', function (req, res) {
-	const {firstId} = req.query;
-	const{id, password} = req.body;
+router.post('/spotify-create', function (req, res) {
+  const isMix = !!req.query.isMix
+  const name = req.body.name
 
-	let result = false;
+  if (!name) {
+    return res.render('spotify-alert', {
+      style: 'spotify-alert',
 
-	if (firstId === id) {
-		result = User.deleteById(Number(id), password);
-	}
+      data: {
+        message: 'Помилка',
+        info: 'Введіть назву',
+        link: isMix
+          ? 'spotify-create?isMix=true'
+          : 'spotify-create',
+      },
+    })
+  }
 
-  res.render('info', {
-    style: 'info',
-	info: result ? 'користувача видалено' : 'сталась помилка',
+  const playlist = Playlist.create(name)
+
+  if (isMix) {
+    Playlist.makeMix(playlist)
+  }
+
+  console.log(playlist)
+
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+
+    data: {
+      playlistId: playlist.id,
+      tracks: playlist.tracks,
+      name: playlist.name,
+    },
   })
 })
 
-router.get('/user-upd', function (req, res) {
-	const {id} = req.query;
+router.get('/spotify-playlist', function (req, res) {
+  const id = Number(req.query.id)
+  const playlist = Playlist.getbyId(id)
 
-	const user = User.getById(Number(id));
+  if (!playlist) {
+    return res.render('spotify-alert', {
+      style: 'spotify-alert',
 
-  res.render('upd', {
-    style: 'upd',
-	user,
+      data: {
+        message: 'Помилка',
+        info: 'Плейліст не знайдено',
+        link: '',
+      },
+    })
+  }
+
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+
+    data: {
+      playlistId: playlist.id,
+      tracks: playlist.tracks,
+      name: playlist.name,
+    },
   })
 })
 
-router.post('/user-update', function (req, res) {
-	const{firstId} = req.query;
-	const {email, password, id} = req.body;
+router.get('/spotify-track-delete', function (req, res) {
+  const trackId = Number(req.query.trackId)
+  const playlistId = Number(req.query.playlistId)
 
-	let result = false;
+  const playlist = Playlist.getbyId(playlistId)
 
-	if (firstId === id) {
-		result = User.updateById(Number(id), email, password);
-	}
+  if (!playlist) {
+    return res.render('spotify-alert', {
+      style: 'spotify-alert',
 
-  res.render('info', {
-    style: 'info',
-	info: result ? 'пошту користувача оновлено' : 'сталась помилка',
+      data: {
+        message: 'Помилка',
+        info: 'Плейліст не знайдено',
+        link: `spotify-playlist?${playlistId}`,
+      },
+    })
+  }
+
+  playlist.deleteTrackById(trackId)
+  Playlist.setPicture(playlist)
+
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+
+    data: {
+      playlistId: playlist.id,
+      tracks: playlist.tracks,
+      name: playlist.name,
+    },
   })
 })
 
-// ================================================================
+router.get('/spotify-playlist-add', function (req, res) {
+  const playlistId = Number(req.query.playlistId)
 
-router.get('/product-create', function (req, res) {
-  res.render('product-create', {
-    style: 'product-create',
+  const tracks = Track.getList()
+
+  if (!tracks) {
+    return res.render('spotify-alert', {
+      style: 'spotify-alert',
+
+      data: {
+        message: 'Помилка',
+        info: 'Плейліст не знайдено',
+        link: `spotify-playlist?${playlistId}`,
+      },
+    })
+  }
+
+  res.render('spotify-playlist-add', {
+    style: 'spotify-playlist-add',
+
+    data: {
+      tracks,
+      playlistId,
+    },
   })
 })
 
-router.post('/product-create', function (req, res) {
-	const {name, price, description} = req.body;
+router.get('/spotify-track-add', function (req, res) {
+  const trackId = Number(req.query.trackId)
+  const playlistId = Number(req.query.playlistId)
 
-	const product = new Product(name, price, description);
+  const playlist = Playlist.getbyId(playlistId)
 
-	Product.add(product);
+  if (!playlist) {
+    return res.render('spotify-alert', {
+      style: 'spotify-alert',
 
-  res.render('alert', {
-    style: 'alert',
-	alert: 'Товар усішно додано',
+      data: {
+        message: 'Помилка',
+        info: 'Плейліст не знайдено',
+        link: `spotify-playlist?${playlistId}`,
+      },
+    })
+  }
+})
+
+router.get('/product-list', function (req, res) {
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+
+    data: {
+      playlistId,
+      tracks: playlist.tracks,
+      name: playlist.name,
+    },
   })
 })
 
-router.get('/', function (req, res) {
+router.get('/spotify-search', function (req, res) {
+  const value = ''
 
-	const list = Product.getList();
-	
-  res.render('product-list', {
-    style: 'product-list',
+  res.render('spotify-search', {
+    style: 'spotify-search',
 
-	list,
-	isEmpty: list.length === 0,
+    data: {
+      list: Playlist.getList(),
+    },
   })
 })
 
-router.get('/product-edit', function (req, res) {
-	const {id} = req.query;
+router.post('/spotify-search', function (req, res) {
+  const value = req.body.value
+  console.log(value)
 
-	const product = Product.getById(Number(id));
+  res.render('spotify-search', {
+    style: 'spotify-search',
 
-	if(product) {
-	
-		res.render('product-edit', {
-			style: 'product-edit',
-
-			product,
-		})
-	} else {
-		res.render('alert', {
-			style: 'alert',
-
-			alert: 'Товар з таким ID не знайдено',
-		})
-	}
-})
-
-router.post('/product-edit', function (req, res) {
-	const {name, price, id, description} = req.body;
-
-	Product.updateById(Number(id), {name, price, description});
-
-  res.render('alert', {
-    style: 'alert',
-	alert: 'Товар усішно змінено',
+    data: {
+      list: Playlist.findListByValue(value),
+      value,
+    },
   })
 })
 
-router.get('/product-delete', function (req, res) {
-	const {id} = req.query;
-
-	const result = Product.deleteById(Number(id));
-	
-  res.render('alert', {
-    style: 'alert',
-	alert: result? 'Товар успішно видалено' : 'Сталась помилка',
-  })
-})
-
-// Підключаємо роутер до бек-енду
 module.exports = router

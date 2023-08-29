@@ -1,0 +1,50 @@
+@use '../../lib/service.scss' as s;
+@use '../../component/heading/style.scss' as header;
+@use '../../component/purchase-product/style.scss' as purchaseProduct;
+@use '../../component/button/style.scss' as button;
+@use '../../component/divider/style.scss' as divider;
+
+.purchase-section {
+	display: flex;
+	flex-direction: column;
+	gap: s.space(15);
+}
+
+.purchase-list {
+	display: grid;
+	gap: s.space(5);
+}
+
+.purchase {
+	display: grid;
+	grid-template-columns: 2fr 4fr 3fr 3fr;
+	align-items: center;
+	gap: s.space(4);
+
+	@media all and (width < 760px) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	@media all and (width < 450px) {
+		grid-template-columns: 1fr;
+		gap: s.space(6);
+	}
+}
+
+.purchase-item {
+	display: grid;
+	gap: s.space(3);
+	color: #000;
+
+	@media all and (width < 760px) {
+		gap: s.space(2);
+	}
+}
+
+.title, .id {
+	color: #808080;
+}
+
+a {
+	text-decoration: none;
+}

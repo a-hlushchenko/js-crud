@@ -70,7 +70,6 @@ class Product {
 
 	static #list = [
 		{name: 'Anton', price: 9999, description: 'Best bro!', id: 10000},
-		{name: 'Yaroslav', price: 9998, description: 'Very good bro)', id: 10001},
 	];
 
 	static getList = () => {
